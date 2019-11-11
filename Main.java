@@ -1,11 +1,11 @@
-import display.*;
-import shapes.*;
+import mydisplay.*;
+import myshapes.*;
 
 public class Main
 {
   public static void main (String []args)
   {
-      Shape nju = new Shape();
+      MyShape nju = new MyShape();
       Disp okno = new Disp(nju);
       okno.repaint();
   }

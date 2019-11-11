@@ -1,20 +1,20 @@
-package shapes;
+package myshapes;
 
 import java.lang.Math.*;
 
-public class Shape
+public class MyShape
 {
   int Xcent, Ycent;
   double radians;
 
-  public Shape()
+  public MyShape()
   {
     Xcent = 0;
     Ycent = 0;
     radians = 0;
   }
 
-  public Shape(int x, int y, int rot)
+  public MyShape(int x, int y, int rot)
   {
     Xcent = x;
     Ycent = y;
