@@ -1,5 +1,4 @@
 import mydisplay.*;
-import myshapes.*;
 
 public class Main
 {

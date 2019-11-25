@@ -1,7 +1,9 @@
 package mydisplay;
 import myshapes.*;
+import lights.LightPoint;
 import javax.swing.*;
 import java.awt.geom.Line2D;
+import java.awt.geom.Ellipse2D;
 import java.awt.*;
 import java.util.ArrayList;
 import java.awt.event.*;
@@ -12,9 +14,15 @@ public class Disp extends JComponent
     ArrayList<MyShape> shapeList;
     MapPanelListener clickListen;
     MapPanelDrag dragListen;
+    LightListener lightListen;
+    LightPoint myLightPoint;
+
+    //ButtonGroup usageModes;
+    //JRadioButton designMode, playMode;
 
     public Disp()
     {
+        myLightPoint = new LightPoint();
         shapeList = new ArrayList<MyShape>();
         JFrame myWindow = new JFrame();
         myMenu = new Menu();
@@ -23,10 +31,16 @@ public class Disp extends JComponent
         myWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         clickListen = new MapPanelListener(this);
         dragListen = new MapPanelDrag(this);
+        lightListen = new LightListener(this);
         this.addMouseListener(clickListen);
         this.addMouseMotionListener(dragListen);
+        myWindow.addKeyListener(lightListen);
+
         myWindow.add(this);
     }
+
+    public int xForPrint( int x) { return (int)( x + 0.5 * this.getSize().getWidth());}
+    public int yForPrint( int y) { return (int)(-y + 0.5 * this.getSize().getHeight());}
 
     public void paint(Graphics g)
     {
@@ -43,12 +57,16 @@ public class Disp extends JComponent
 
         for(int i=0; i<shapeList.size(); i++)
         {
-          int complexity = shapeList.get(i).getComplexity();
-          int points [] [] = shapeList.get(i).getPointsForPrint();
-          for(int j=0; j+1<complexity; j++)
-              g2.drawLine(points[j][0], points[j][1], points[j+1][0], points[j+1][1]);
-          g2.drawLine(points[0][0], points[0][1], points[complexity-1][0], points[complexity-1][1]);
+            ArrayList<Wall> walllist = shapeList.get(i).wallsList();
+            for(int j=0; j < walllist.size(); j++)
+            {
+              g2.draw(walllist.get(j).getDrawing());
+            }
         }
+
+        g2.setColor(Color.ORANGE);
+        g2.fill(new Ellipse2D.Double( this.xForPrint(myLightPoint.getox()),
+        this.yForPrint(myLightPoint.getoy()), myLightPoint.getdim(), myLightPoint.getdim()));
     }
 
     class MapPanelListener implements MouseListener//, MouseMotionListener         //Myszka na mapce
@@ -63,10 +81,6 @@ public class Disp extends JComponent
         public void mouseReleased(MouseEvent e)
         {
             disp.repaint();
-            int complexity = disp.shapeList.get(shapeList.size()-1).getComplexity();
-            int points [] [] = disp.shapeList.get(shapeList.size()-1).getXoYpoints();
-            for(int i=0; i<complexity; i++)
-                MyShape.print(i+1+" X: "+points[i][0]+" Y: "+points[i][1]);
         }
         public void mouseEntered(MouseEvent e) {}
         public void mouseExited(MouseEvent e) {}
@@ -84,5 +98,23 @@ public class Disp extends JComponent
         public void mouseEntered(MouseEvent e) {}
         public void mouseExited(MouseEvent e) {}
         public void mouseMoved(MouseEvent e) {}
+    }
+
+    class LightListener implements KeyListener
+    {
+        Disp disp;
+        public LightListener (Disp disp) {this.disp = disp;}
+        public void keyPressed(KeyEvent arg)
+        {}
+        public void keyReleased(KeyEvent arg)
+        {
+          char c = arg.getKeyChar();
+          if(c == 'w') {myLightPoint.pressedW(); disp.repaint();}
+          if(c == 'a') {myLightPoint.pressedA(); disp.repaint();}
+          if(c == 's') {myLightPoint.pressedS(); disp.repaint();}
+          if(c == 'd') {myLightPoint.pressedD(); disp.repaint();}
+        }
+        public void keyTyped(KeyEvent arg)
+        {}
     }
 }
