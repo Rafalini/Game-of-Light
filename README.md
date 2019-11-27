@@ -1,5 +1,7 @@
 #Game of lights
 
-General idea is to play with ray casting. For now, drawing figures (rectangles) and moving ('W'A'S'D') user point works.
+Draw figures (rectangles) with mouse and move with 'W'A'S'D' user point.
 
-*Rays in future update
+*more figures in the future
+
+
