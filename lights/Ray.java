@@ -1,6 +1,7 @@
 package lights;
 
 import myshapes.*;
+import mydisplay.*;
 import java.lang.Math;
 import java.awt.Dimension;
 import java.awt.geom.Point2D;
@@ -22,7 +23,19 @@ public class Ray
   public Dimension getPos    () {return pos;}
   public Dimension getposRay () {return posRay;}
   public Dimension getHit    () {return hitpoint;}
-  public void resetHit() {hitpoint = pos;}
+  public void resetHit()
+  {
+      /*if     (0.7853<= radians && radians < 3.3561) //pi/4 to 3pi/4 Ymax
+          hitpoint = new Dimension( ,disp.getSize().getHeight()-5);
+      else if(3.3561<= radians && radians < 3.9269) //3pi/4 to 5pi/4 Xmin
+          hitpoint = new Dimension( -(disp.getSize().getWidth()-5), );
+      else if(3.9269<= radians && radians < 5.4977) //5pi/4 to 7pi/4 Ymin
+          hitpoint = new Dimension( ,-(disp.getSize().getHeight()-5));
+      else //7pi/4 to pi/4 Xmax
+          hitpoint = new Dimension( disp.getSize().getWidth()-5),);*/
+          hitpoint = pos;
+
+  }
 
   public void casting (Wall mywall)
   {

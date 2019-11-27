@@ -24,6 +24,8 @@ public class Disp extends JComponent
     {
         myLightPoint = new LightPoint(3600);
         shapeList = new ArrayList<MyShape>();
+        shapeList.add(new Rect(this, 0,0));
+        shapeList.get(shapeList.size()-1).sizeUpdate(600-4, 600-4);
         JFrame myWindow = new JFrame();
         myMenu = new Menu();
         myWindow.setSize(600,600);
@@ -77,8 +79,8 @@ public class Disp extends JComponent
                   myrays.get(i).casting(mywalls.get(k));
             }
 
-            g2.fill( new Ellipse2D.Double( this.getXforPrint((int)myrays.get(i).getHit().getWidth()) -5,
-                                           this.getYforPrint((int)myrays.get(i).getHit().getHeight())-5, 10, 10) );
+            //g2.fill( new Ellipse2D.Double( this.getXforPrint((int)myrays.get(i).getHit().getWidth()) -5,
+            //                               this.getYforPrint((int)myrays.get(i).getHit().getHeight())-5, 10, 10) );
             //MyShape.print("po X: " + myrays.get(i).getHit().getWidth()
             //              + " Y: " + myrays.get(i).getHit().getHeight());
             g2.draw( new Line2D.Double( this.getXforPrint((int)myLightPoint.getox()),
@@ -131,10 +133,10 @@ public class Disp extends JComponent
         public void keyPressed(KeyEvent arg)
         {
           char c = arg.getKeyChar();
-          if(c == 'w' || arg.getKeyCode() == KeyEvent.VK_UP) {myLightPoint.pressedW(); disp.repaint();}
-          if(c == 'a' || arg.getKeyCode() == KeyEvent.VK_LEFT) {myLightPoint.pressedA(); disp.repaint();}
-          if(c == 's' || arg.getKeyCode() == KeyEvent.VK_DOWN) {myLightPoint.pressedS(); disp.repaint();}
-          if(c == 'd' || arg.getKeyCode() == KeyEvent.VK_RIGHT) {myLightPoint.pressedD(); disp.repaint();}
+          if(c == 'w' || arg.getKeyCode() == KeyEvent.VK_UP) {myLightPoint.pressedW(disp); disp.repaint();}
+          if(c == 'a' || arg.getKeyCode() == KeyEvent.VK_LEFT) {myLightPoint.pressedA(disp); disp.repaint();}
+          if(c == 's' || arg.getKeyCode() == KeyEvent.VK_DOWN) {myLightPoint.pressedS(disp); disp.repaint();}
+          if(c == 'd' || arg.getKeyCode() == KeyEvent.VK_RIGHT) {myLightPoint.pressedD(disp); disp.repaint();}
         }
         public void keyReleased(KeyEvent arg)  {}
         public void keyTyped(KeyEvent arg)     {}

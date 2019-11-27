@@ -1,6 +1,6 @@
 package lights;
 
-//import mydisplay.*;
+import mydisplay.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
@@ -31,10 +31,30 @@ public class LightPoint
   public int getoy () {return this.y ;}
   public int getdim() {return this.dim;}
 
-  public void pressedW() {this.y += 10; rayUpdate();}
-  public void pressedA() {this.x -= 10; rayUpdate();}
-  public void pressedS() {this.y -= 10; rayUpdate();}
-  public void pressedD() {this.x += 10; rayUpdate();}
+  public void pressedW(Disp disp)
+  {
+    if(this.y < disp.getSize().getHeight() - 5)
+      this.y += 5;
+    rayUpdate();
+  }
+  public void pressedA(Disp disp)
+  {
+    if(this.y > -(disp.getSize().getWidth() - 5))
+      this.x -= 5;
+    rayUpdate();
+  }
+  public void pressedS(Disp disp)
+  {
+    if(this.y > -(disp.getSize().getHeight() - 5))
+      this.y -= 5;
+    rayUpdate();
+  }
+  public void pressedD(Disp disp)
+  {
+    if(this.y < disp.getSize().getWidth() - 5)
+      this.x += 5;
+    rayUpdate();
+  }
 
   public ArrayList<Ray> getRays () {return rays;}
 
