@@ -14,7 +14,7 @@ public class Menu extends JFrame
         designMode = new JCheckBox("Design Mode:");
         this.add(designMode);
 
-        this.setVisible(true);
+        //this.setVisible(true);
 
     }
 }

@@ -1,6 +1,6 @@
 package mydisplay;
 import myshapes.*;
-import lights.LightPoint;
+import lights.*;
 import javax.swing.*;
 import java.awt.geom.Line2D;
 import java.awt.geom.Ellipse2D;
@@ -22,7 +22,7 @@ public class Disp extends JComponent
 
     public Disp()
     {
-        myLightPoint = new LightPoint();
+        myLightPoint = new LightPoint(3600);
         shapeList = new ArrayList<MyShape>();
         JFrame myWindow = new JFrame();
         myMenu = new Menu();
@@ -57,16 +57,40 @@ public class Disp extends JComponent
 
         for(int i=0; i<shapeList.size(); i++)
         {
-            ArrayList<Wall> walllist = shapeList.get(i).wallsList();
+            ArrayList<Wall> walllist = shapeList.get(i).getWalls();
             for(int j=0; j < walllist.size(); j++)
+              g2.draw( new Line2D.Double( this.getXforPrint((int)walllist.get(j).getP1().getWidth() ),
+                                          this.getYforPrint((int)walllist.get(j).getP1().getHeight()),
+                                          this.getXforPrint((int)walllist.get(j).getP2().getWidth() ),
+                                          this.getYforPrint((int)walllist.get(j).getP2().getHeight()) ) );
+        }
+
+        g2.setColor(new Color (63,180,250));
+        ArrayList<Ray> myrays = myLightPoint.getRays();
+        for(int i=0; i<myrays.size(); i++)
+        {
+            myrays.get(i).resetHit();
+            for(int j=0; j<shapeList.size(); j++)
             {
-              g2.draw(walllist.get(j).getDrawing());
+              ArrayList<Wall> mywalls = shapeList.get(j).getWalls();
+              for(int k=0; k < mywalls.size(); k++)
+                  myrays.get(i).casting(mywalls.get(k));
             }
+
+            g2.fill( new Ellipse2D.Double( this.getXforPrint((int)myrays.get(i).getHit().getWidth()) -5,
+                                           this.getYforPrint((int)myrays.get(i).getHit().getHeight())-5, 10, 10) );
+            //MyShape.print("po X: " + myrays.get(i).getHit().getWidth()
+            //              + " Y: " + myrays.get(i).getHit().getHeight());
+            g2.draw( new Line2D.Double( this.getXforPrint((int)myLightPoint.getox()),
+            /**/                        this.getYforPrint((int)myLightPoint.getoy()),
+            /**/                        this.getXforPrint((int)myrays.get(i).getHit().getWidth()  ),
+            /**/                        this.getYforPrint((int)myrays.get(i).getHit().getHeight() ) ) );
         }
 
         g2.setColor(Color.ORANGE);
-        g2.fill(new Ellipse2D.Double( this.xForPrint(myLightPoint.getox()),
-        this.yForPrint(myLightPoint.getoy()), myLightPoint.getdim(), myLightPoint.getdim()));
+        g2.fill(new Ellipse2D.Double( this.xForPrint(myLightPoint.getox()) - 0.5*myLightPoint.getdim(),
+                                      this.yForPrint(myLightPoint.getoy()) - 0.5*myLightPoint.getdim(),
+                                      myLightPoint.getdim(), myLightPoint.getdim()));
     }
 
     class MapPanelListener implements MouseListener//, MouseMotionListener         //Myszka na mapce
@@ -105,16 +129,30 @@ public class Disp extends JComponent
         Disp disp;
         public LightListener (Disp disp) {this.disp = disp;}
         public void keyPressed(KeyEvent arg)
-        {}
-        public void keyReleased(KeyEvent arg)
         {
           char c = arg.getKeyChar();
-          if(c == 'w') {myLightPoint.pressedW(); disp.repaint();}
-          if(c == 'a') {myLightPoint.pressedA(); disp.repaint();}
-          if(c == 's') {myLightPoint.pressedS(); disp.repaint();}
-          if(c == 'd') {myLightPoint.pressedD(); disp.repaint();}
+          if(c == 'w' || arg.getKeyCode() == KeyEvent.VK_UP) {myLightPoint.pressedW(); disp.repaint();}
+          if(c == 'a' || arg.getKeyCode() == KeyEvent.VK_LEFT) {myLightPoint.pressedA(); disp.repaint();}
+          if(c == 's' || arg.getKeyCode() == KeyEvent.VK_DOWN) {myLightPoint.pressedS(); disp.repaint();}
+          if(c == 'd' || arg.getKeyCode() == KeyEvent.VK_RIGHT) {myLightPoint.pressedD(); disp.repaint();}
         }
-        public void keyTyped(KeyEvent arg)
-        {}
+        public void keyReleased(KeyEvent arg)  {}
+        public void keyTyped(KeyEvent arg)     {}
+    }
+      //geom functions for printing
+    public int getXforPrint( int x) { return (int)( x + 0.5 * this.getSize().getWidth());}
+    public int getYforPrint( int y) { return (int)(-y + 0.5 * this.getSize().getHeight());}
+    public Dimension getPointPrint (Dimension p1)
+    {
+      int a = (int) this.getXforPrint( (int) p1.getWidth()  );
+      int b = (int) this.getYforPrint( (int) p1.getHeight() );
+      return new Dimension(a,b);
+    }
+
+    public Wall getWallForPrint(Wall mywall)
+    {
+      Dimension p1 = this.getPointPrint(mywall.getP1());
+      Dimension p2 = this.getPointPrint(mywall.getP2());
+      return new Wall(p1,p2);
     }
 }
