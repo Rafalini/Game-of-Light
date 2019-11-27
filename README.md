@@ -1,4 +1,4 @@
-#Game of lights
+# Game of lights
 
 Draw figures (rectangles) with mouse and move with 'W'A'S'D' user point.
 
