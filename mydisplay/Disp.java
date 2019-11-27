@@ -67,7 +67,9 @@ public class Disp extends JComponent
                                           this.getYforPrint((int)walllist.get(j).getP2().getHeight()) ) );
         }
 
-        g2.setColor(new Color (63,180,250));
+        //g2.setColor(new Color (63,180,250)); //light blue
+        //g2.setColor(Color.LIGHT_GRAY);
+        g2.setColor(new Color(160,160,160, 15));
         ArrayList<Ray> myrays = myLightPoint.getRays();
         for(int i=0; i<myrays.size(); i++)
         {
