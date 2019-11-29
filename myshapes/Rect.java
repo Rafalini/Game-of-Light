@@ -2,10 +2,8 @@ package myshapes;
 
 import mydisplay.*;
 import java.util.*;
-import java.lang.Math.*;
 import java.util.ArrayList;
 import java.awt.Dimension;
-import java.awt.geom.Line2D;
 
 public class Rect extends MyShape
 {

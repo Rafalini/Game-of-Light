@@ -12,17 +12,17 @@ public class LightPoint
   int dim;
   ArrayList<Ray> rays;
 
-  public LightPoint()
+  public LightPoint(int x, int y)
   {
-    this.x = 0;
-    this.y = 0;
+    this.x = x;
+    this.y = y;
     this.dim = 10;
     rays = new ArrayList<Ray>();
   }
 
-  public LightPoint(int rays_amout)
+  public LightPoint(int x, int y, int rays_amout)
   {
-    this();
+    this(x,y);
     for(int i=0; i<rays_amout; i++)
       rays.add(new Ray (this.x, this.y, i*360/rays_amout));
   }
