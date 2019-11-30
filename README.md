@@ -16,8 +16,10 @@ $: java Main
 
 ### Notes:
 
+Polygon shapes are generated with random number of  sides (from 1 - just wall as well as 2, to 8).
 
-* choice of figures in menu in future update
+
+* choice of figures in menu (not sequential change after drawing) in future update
 
 * jar file in the future
 
