@@ -7,6 +7,7 @@ import java.awt.geom.Ellipse2D;
 import java.awt.*;
 import java.util.ArrayList;
 import java.awt.event.*;
+import java.lang.Math;
 
 public class Disp extends JComponent
 {
@@ -23,11 +24,11 @@ public class Disp extends JComponent
     public Disp()
     {
         myLightPoint = new ArrayList<LightPoint>();
-        myLightPoint.add(new LightPoint(0,0,3600));
-        myLightPoint.add(new LightPoint(10,0,3600));
-        myLightPoint.add(new LightPoint(0,10,3600));
-        myLightPoint.add(new LightPoint(-10,0,3600));
-        myLightPoint.add(new LightPoint(0,-10,3600));
+        myLightPoint.add(new LightPoint(0,0,2000));
+        myLightPoint.add(new LightPoint(10,0,2000));
+        myLightPoint.add(new LightPoint(0,10,2000));
+        myLightPoint.add(new LightPoint(-10,0,2000));
+        myLightPoint.add(new LightPoint(0,-10,2000));
         //myLightPoint.add(new LightPoint(100,0,3600));
         shapeList = new ArrayList<MyShape>();
         shapeList.add(new Rect(this, 0,0));
@@ -113,10 +114,12 @@ public class Disp extends JComponent
         public void mouseClicked(MouseEvent e)  {}
         public void mousePressed(MouseEvent e)
         {
-          if(shapeList.size() % 2 == 0)
+          if(shapeList.size() % 3 == 0)
             shapeList.add(new Rect(disp, e.getX(), e.getY()));
-          else
-            shapeList.add(new Roundrec(disp, e.getX(), e.getY()));
+          else if(shapeList.size() % 3 == 1)
+            shapeList.add(new Circ(disp, e.getX(), e.getY()));
+          else if(shapeList.size() % 3 == 2)
+            shapeList.add(new myshapes.Polygon(disp, e.getX(), e.getY(), ((int)(Math.random()*100))%9 ));
         }
         public void mouseReleased(MouseEvent e)
         {

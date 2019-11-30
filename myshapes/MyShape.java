@@ -18,14 +18,12 @@ public abstract class MyShape
     xCent = getXforXoY(x);
     yCent = getYforXoY(y);
     radians = java.lang.Math.toRadians(rot);
-    print("Utworzono Rect, x:"+xCent+" y:"+yCent);
   }
 
-  public static void print(String message)   {System.out.println(message);}
-  
+  //public static void print(String message)   {System.out.println(message);}
+
   public abstract ArrayList<Wall> getWalls();            //returns those points
   public abstract void sizeUpdate (int a, int b);         //updates size of figure
-  //public double getAngle() {return radians;}
 
   public int getXforXoY( int x) { return (int)( x - 0.5 * disp.getSize().getWidth());}
   public int getYforXoY( int y) { return (int)(-y + 0.5 * disp.getSize().getHeight());}

@@ -55,7 +55,7 @@ public class Ray
 
       Dimension point = new Dimension( (int)(x1 + t*(x2 - x1)), (int)(y1 + t*(y2 - y1 )) );
 
-      if( 0 < t && t < 1 && u > 0)
+      if( 0 <= t && t <= 1 && u >= 0)
       {
         if( Point2D.distance(hitpoint.getWidth(), hitpoint.getHeight(), pos.getWidth(), pos.getHeight()) == 0)
             hitpoint = point;
