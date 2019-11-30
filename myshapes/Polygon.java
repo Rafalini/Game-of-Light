@@ -15,7 +15,7 @@ public class Polygon extends MyShape
   {
     super(disp,x,y,0);  //convertion to XoY with (0,0) in the middle of the screen
     mywalls = new ArrayList<Wall>();
-    if(n<1) n=1;
+    if(n < 3) n=2;
     for(int i=0; i<n; i++)
       mywalls.add(new Wall(super.xCent, super.yCent, super.xCent, super.yCent));
   }
