@@ -1,6 +1,9 @@
 # Game of lights
 
-Draw figures (rectangles) with mouse and move with 'W'A'S'D' user point.
+### Usage:
+
+Draw shape (different shapes will appear sequentially, one by one) by clicking and dragging in black area. Move lightsource with 'W'A'S'D' or arrows and enjoy casting shadows of figures on each other or boundaries :)
+
 
 ### Run:
 
@@ -11,7 +14,10 @@ $: javac Main.java
 $: java Main
 
 
-* more figures in the future
+### Notes:
+
+
+* choice of figures in menu in future update
 
 * jar file in the future
 
