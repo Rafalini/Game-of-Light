@@ -14,6 +14,9 @@ $: javac Main.java
 $: java Main
 
 
+### Notes:
+
+
 * choice of figures in menu in future update
 
 * jar file in the future
