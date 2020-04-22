@@ -1,8 +1,8 @@
 # Game of lights
 
-![image](https://user-images.githubusercontent.com/44322872/79969970-83d3aa00-8492-11ea-932f-95df3693c328.png)
+![LightPlaySmall](https://user-images.githubusercontent.com/44322872/79970186-d4e39e00-8492-11ea-92eb-0199a84c3c4f.JPG)
 
-![LightPlay2](https://user-images.githubusercontent.com/44322872/79968840-f80d4e00-8490-11ea-9731-658d1db2fb8a.JPG)
+![LightPlay2small](https://user-images.githubusercontent.com/44322872/79970190-d57c3480-8492-11ea-8825-0179087ce9f4.JPG)
 
 
 ### Usage:
