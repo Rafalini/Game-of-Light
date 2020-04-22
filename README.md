@@ -2,6 +2,9 @@
 
 ![LightPlay](https://user-images.githubusercontent.com/44322872/79968683-c1cfce80-8490-11ea-805e-e2323fd8fb49.JPG)
 
+![LightPlay2](https://user-images.githubusercontent.com/44322872/79968840-f80d4e00-8490-11ea-9731-658d1db2fb8a.JPG)
+
+
 ### Usage:
 
 Draw shape (different shapes will appear sequentially, one by one) by clicking and dragging in black area. Move lightsource with 'W'A'S'D' or arrows and enjoy casting shadows of figures on each other or boundaries :)
