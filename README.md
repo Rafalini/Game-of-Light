@@ -1,6 +1,6 @@
 # Game of lights
 
-![LightPlay](https://user-images.githubusercontent.com/44322872/79968683-c1cfce80-8490-11ea-805e-e2323fd8fb49.JPG)
+![image](https://user-images.githubusercontent.com/44322872/79969970-83d3aa00-8492-11ea-932f-95df3693c328.png)
 
 ![LightPlay2](https://user-images.githubusercontent.com/44322872/79968840-f80d4e00-8490-11ea-9731-658d1db2fb8a.JPG)
 
